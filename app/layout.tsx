@@ -11,7 +11,7 @@ const APP_NAME = "DocuPro";
 const APP_DEFAULT_TITLE = "DocuPro";
 const APP_TITLE_TEMPLATE = "DocuPro";
 const APP_DESCRIPTION =
-  "📖 University data, beautifully presented at your fingertips";
+  "📚 Past exam papers at your fingertips.";
 const PRODUCTION_URL = "https://docu-pro.vercel.app";
 
 export const metadata: Metadata = {

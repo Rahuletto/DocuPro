@@ -11,7 +11,7 @@ export const Themes = {
       input: "rgba(255, 255, 255, 0.03)",
       button: "#12161B",
       side: "#171D26",
-      accent: "#B3B3D1",
+      accent: {background: "#786CFF1e", color: "#857AFF"},
       color: "#fefefe",
       error: {
         background: "#1D0C0C",
@@ -40,7 +40,7 @@ export const Themes = {
       input: "rgba(0, 0, 0, 0.03)",
       button: "#F0F0F0",
       side: "#E8E8Ef",
-      accent: "#3A3A5F",
+      accent: {background: "#786CFF1e", color: "#7269DE"},
       color: "#1A1A1A",
       error: {
         background: "#FFEBEB",

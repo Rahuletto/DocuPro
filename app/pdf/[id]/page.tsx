@@ -17,7 +17,7 @@ export default function PDF({ params }: { params: { id: string } }) {
         }),
       })
         .then((res) => res.json())
-        .then((data) => data.redirect && router.push(data.redirect));
+        .then((data) => {window.open('data.redirect', '_blank')});
   }, [params.id, router]);
 
   return (

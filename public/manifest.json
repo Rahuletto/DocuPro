@@ -1,0 +1,29 @@
+{
+    "name": "DocuPro",
+    "short_name": "DocuPro",
+    "description": "Past exam papers at your fingertips.",
+    "theme_color": "#11151B",
+    "lang": "en",
+    "background_color": "#11151B",
+    "start_url": "https://docu-pro.vercel.app/",
+    "scope": "https://docu-pro.vercel.app/",
+    "handle_links": "preferred",
+    "launch_handler": {
+      "client_mode": "focus-existing"
+    },
+    "display_override": ["fullscreen", "window-controls-overlay"],
+    "display": "standalone",
+    "id": "02012006",
+    "dir": "ltr",
+    "orientation": "portrait",
+    "categories": [
+      "education",
+      "lifestyle",
+      "navigation",
+      "personalization",
+      "productivity"
+    ],
+    "edge_side_panel": {
+      "preferred_width": 300
+    }
+  }

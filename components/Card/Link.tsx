@@ -9,7 +9,7 @@ export default function CardLink({ paper }: { paper: Paper }) {
       href={"/pdf/" + paper.link.split("/123456789/")[1]}
       tabIndex={0}
       title={paper.published}
-      aria-title={`${paper.published} paper`}
+      aria-label={`${paper.published} paper`}
       target="_blank"
       className="cursor-pointer transition duration-75 flex gap-2 items-center justify-start hover:bg-dark-accent-background px-2 py-2 rounded-xl dark:hover:bg-dark-accent-background-light hover:bg-light-accent-background-light"
     >

@@ -1,0 +1,18 @@
+{
+    "regions": ["bom1"],
+    "cleanUrls": true,
+    "framework": "nextjs",
+    "redirects": [
+      {
+        "source": "/elab",
+        "destination": "https://better-lab.vercel.app",
+        "permanent": true
+      },
+      {
+        "source": "/academia",
+        "destination": "https://academia-pro.vercel.app",
+        "permanent": true
+      }
+    ]
+  }
+  

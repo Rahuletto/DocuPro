@@ -34,7 +34,7 @@ export default function History() {
   }
 
   return (
-    history[0] && (
+    history[0] ? (
       <div className="relative animate-fadeIn bg-light-background-light transition-all duration-200 dark:bg-dark-background-light px-6 py-4 pb-6 rounded-3xl md:w-[50%] md:mx-0 w-[95vw] mx-3">
         <div className="flex justify-between items-center">
           <h3 className="font-semibold text-xl text-light-color dark:text-dark-color">
@@ -54,6 +54,6 @@ export default function History() {
           ))}
         </div>
       </div>
-    )
+    ) : <div className="mt-16" />
   );
 }

@@ -1,22 +1,24 @@
-import { redirect } from "next/navigation";
-import React from "react";
+"use client";
+import { useTransitionRouter } from "next-view-transitions";
+import React, { useEffect } from "react";
 import { RiLoader3Fill } from "react-icons/ri";
 
-export default async function PDF({ params }: { params: { id: string } }) {
-  if (!params.id) return redirect("/");
-  else
-    await fetch(
-      `https://proscrape.vercel.app/api/dspace/getPDF?q=${params.id}`,
-      {
+export default function PDF({ params }: { params: { id: string } }) {
+  const router = useTransitionRouter();
+
+  useEffect(() => {
+    if (!params.id) return router.push("/");
+    else
+      fetch(`https://proscrape.vercel.app/api/dspace/getPDF?q=${params.id}`, {
         cache: "force-cache",
         method: "POST",
         body: JSON.stringify({
           url: `http://dspace.srmist.edu.in/dspace/handle/123456789/${params.id}`,
         }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => data.redirect && redirect(data.redirect, "push" as any));
+      })
+        .then((res) => res.json())
+        .then((data) => data.redirect && router.push(data.redirect));
+  }, [params.id, router]);
 
   return (
     <main className="flex h-screen w-screen animate-fadeIn flex-col items-center justify-center p-12 text-light-accent dark:text-dark-accent">

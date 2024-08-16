@@ -7,20 +7,23 @@ import { slideInOut } from "@/animations/slide";
 export default function SearchBar({
   accent,
   value,
+  initial
 }: {
   accent?: boolean;
   value?: string;
+  initial?: string;
 }) {
   const router = useTransitionRouter();
   const [search, setSearch] = useState(value ?? "");
 
   function onEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if(initial === search) return;
     if (event.key === "Enter") onClick(event as any);
   }
 
   function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
-    if (!search) return;
+    if(!search || initial === search) return;
     const history = localStorage.getItem("history")
       ? JSON.parse(localStorage.getItem("history")!)
       : [];

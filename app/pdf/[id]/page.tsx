@@ -8,5 +8,5 @@ const PdfViewer = dynamic(() => import("@/components/PdfViewer"), {
 });
 
 export default function PDF({ params }: { params: { id: string } }) {
-  return <PdfViewer url={`/pdf/${params.id}/api`} title={params.id} />;
+  return <PdfViewer url={`/pdf/${params.id}/file`} title={params.id} />;
 }

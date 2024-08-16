@@ -1,13 +1,33 @@
-// app/api/pdf/[id]/route.ts
 import { NextResponse } from "next/server";
 
-export const runtime = "edge"
+export const runtime = "edge";
+
+const pdfCache = new Map<string, ArrayBuffer>();
+const MAX_CACHE_SIZE = 20;
+
+function cacheResponse(id: string, pdfData: ArrayBuffer) {
+  if (pdfCache.size >= MAX_CACHE_SIZE) {
+    const oldestKey = pdfCache.keys().next().value;
+    if (oldestKey) pdfCache.delete(oldestKey);
+  }
+  pdfCache.set(id, pdfData);
+}
 
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
+
+  if (pdfCache.has(id)) {
+    const cachedPdf = pdfCache.get(id)!;
+    return new NextResponse(cachedPdf, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `inline; filename="${id}.pdf"`,
+      },
+    });
+  }
 
   const getURL = await fetch(
     `https://proscrape.vercel.app/api/dspace/getPDF?q=${params.id}`,
@@ -38,6 +58,8 @@ export async function GET(
     }
 
     const pdfData = await response.arrayBuffer();
+
+    cacheResponse(id, pdfData);
 
     return new NextResponse(pdfData, {
       headers: {

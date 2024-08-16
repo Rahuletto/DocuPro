@@ -21,6 +21,9 @@ const conf = {
   compress: true,
   experimental: {
     turbo: {
+      resolveAlias: {
+        canvas: "./empty-module.ts",
+      },
       resolveExtensions: [
         ".mdx",
         ".tsx",

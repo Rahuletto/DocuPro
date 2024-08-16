@@ -31,3 +31,24 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.pdf-btn {
+  @apply mt-1 -mb-1;
+}
+
+.dark .pdf-btn * {
+  @apply text-dark-color;
+} 
+
+.pdf-btn * {
+  @apply text-light-color;
+}
+
+.dark .pdf-input input {
+  @apply bg-dark-input text-white;
+}
+
+.rpv-core__inner-page, .pdf-btn *, .pdf-input input {
+  @apply transition duration-200;
+}

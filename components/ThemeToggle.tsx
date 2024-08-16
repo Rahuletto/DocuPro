@@ -10,7 +10,7 @@ export default function ThemeToggle({ absolute }: { absolute?: boolean }) {
     <button
       onClick={toggleTheme}
       title="Toggle Theme (Ctrl+Shift+P)"
-      className={`${absolute ? "fixed top-4 right-4" : ""} text-md rounded-full p-2 opacity-60 transition duration-200 hover:bg-light-background-dark active:-rotate-45 dark:text-dark-color text-light-color dark:hover:bg-dark-background-dark`}
+      className={`${absolute ? "fixed top-4 right-4 z-30" : ""} text-md rounded-full p-2 opacity-60 transition duration-200 hover:bg-light-background-dark active:-rotate-45 dark:text-dark-color text-light-color dark:hover:bg-dark-background-dark`}
     >
       {isDark ? <LuMoon /> : <LuSun />}
     </button>

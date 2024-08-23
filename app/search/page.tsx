@@ -1,10 +1,11 @@
-
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import { Subject } from "@/types/SearchResult";
 import { redirect } from "next/navigation";
 import React from "react";
 import GroupedSubjects from "./components/Groups";
+import { BiError } from "react-icons/bi";
+import { fetchTimeout } from "@/misc/fetch";
 
 export default async function Search({
   searchParams,
@@ -15,17 +16,48 @@ export default async function Search({
 
   if (!search) redirect("/");
 
-  const data: Subject[] = await fetch(
+  const data: Subject[] = await fetchTimeout(
     `https://proscrape.vercel.app/api/dspace/search?query=${search}`,
-    { cache: "force-cache" }
+    { cache: "force-cache" },
+    5000
   ).then((res) => res.json());
+
+  if (!data)
+    return (
+      <div className="h-screen p-4">
+        <div className="h-full w-full rounded-2xl bg-dark-background-dark p-2">
+          <div className="flex h-full animate-fadeIn flex-col items-center justify-center gap-2 rounded-xl bg-light-error-background p-8 text-light-error-color dark:bg-dark-error-background dark:text-dark-error-color">
+            <BiError className="mb-3 text-4xl" />
+            <h1 className="text-2xl font-medium text-light-error-color dark:text-dark-error-color">
+              Error.
+            </h1>
+            <p className="text-md max-w-[500px] text-center italic text-light-error-color opacity-90 dark:text-dark-error-color">
+              *intense crash sound*
+            </p>
+
+            <pre className="lg:text-md mx-2 mt-4 max-h-[500px] w-[80vw] overflow-auto rounded-2xl border-2 border-dashed border-light-error-color p-3 text-xs text-light-error-color opacity-90 md:text-sm dark:border-dark-error-color dark:text-dark-error-color">
+              <code>
+                Dspace is not available at the moment, try again some time.
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    );
 
   return (
     <main className="relative transition duration-200 min-h-screen overflow-hidden bg-light-background-normal dark:bg-dark-background-normal p-2 pt-0">
       <Header />
       <div className="flex flex-col items-center justify-start w-full min-h-screen overflow-auto px-6 py-3 rounded-2xl dark:bg-dark-background-dark bg-light-background-dark">
-        <div id="dark" className="dark-box max-w-[1400px] w-full flex flex-col gap-10 justify-start items-start h-full md:mt-14 mt-4">
-          <SearchBar accent initial={search.toString()} value={search.toString()} />
+        <div
+          id="dark"
+          className="dark-box max-w-[1400px] w-full flex flex-col gap-10 justify-start items-start h-full md:mt-14 mt-4"
+        >
+          <SearchBar
+            accent
+            initial={search.toString()}
+            value={search.toString()}
+          />
           <GroupedSubjects subjects={data} />
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { fetchTimeout } from "@/misc/fetch";
 import { NextResponse } from "next/server";
 
 export const runtime = "edge";
@@ -29,7 +30,7 @@ export async function GET(
     });
   }
 
-  const getURL = await fetch(
+  const getURL = await fetchTimeout(
     `https://proscrape.vercel.app/api/dspace/getPDF?q=${params.id}`,
     {
       cache: "force-cache",
@@ -37,18 +38,18 @@ export async function GET(
       body: JSON.stringify({
         url: `http://dspace.srmist.edu.in/dspace/handle/123456789/${params.id}`,
       }),
-    }
+    }, 5000
   );
 
   const pdf = await getURL.json();
   const pdfUrl = pdf.redirect;
 
   try {
-    const response = await fetch(pdfUrl, {
+    const response = await fetchTimeout(pdfUrl, {
       headers: {
         Accept: "application/pdf",
       },
-    });
+    }, 5000);
 
     if (!response.ok) {
       return NextResponse.json(

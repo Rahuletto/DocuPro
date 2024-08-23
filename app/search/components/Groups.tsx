@@ -2,6 +2,7 @@ import Card from "@/components/Card";
 import { Subject } from "@/types/SearchResult";
 
 export default function GroupedSubjects({ subjects }: { subjects: Subject[] }) {
+  if(!subjects) return null;
   const groupedSubjects = subjects.reduce((acc, subject) => {
     const regulationCount = subject.regulation.split(" ")[0];
     if (!acc[regulationCount]) {

@@ -31,7 +31,7 @@ export default function SearchBar({
       : [];
 
     if (history.includes(search)) history.splice(history.indexOf(search), 1);
-    history.push(search);
+    history.push((papers ? "æ" : "") + search);
     localStorage.setItem("history", JSON.stringify(history));
 
     router.push(`/${papers ? "papers" : "search"}?q=${search}`, {
@@ -52,7 +52,7 @@ export default function SearchBar({
         onKeyPress={onEnter}
         value={search}
         required
-        placeholder="Search"
+        placeholder={papers ? "Search for Resources" : "Search for PYQs"}
         onChange={(e) => setSearch(e.target.value)}
         className="px-4 py-2 font-medium text-md dark:text-dark-color md:min-w-[350px] min-w-[250px] transition-all duration-200 text-light-color bg-transparent outline-none ring-0"
       />

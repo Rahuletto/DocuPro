@@ -21,13 +21,19 @@ export default function HistoryCard({ text }: { text: string }) {
     <p
       onClick={() => {
         whenOpened(text);
-        router.push(`/search?q=${text.replaceAll(" ", "+")}`, {
-          onTransitionReady: slideInOut,
-        });
+        router.push(
+          `/${text.includes("æ") ? "papers" : "search"}?q=${text
+            .replace("æ", "")
+            .replaceAll(" ", "+")}`,
+          {
+            onTransitionReady: slideInOut,
+          }
+        );
       }}
-      className="cursor-pointer transition duration-200 dark:active:bg-dark-accent-background active:bg-light-accent-background px-4 line-clamp-1 md:text-lg text-md dark:opacity-40 opacity-60 py-2 rounded-xl font-medium border-2 border-dashed hover:border-light-accent-color dark:hover:border-dark-accent-color hover:text-light-accent-color dark:hover:text-dark-accent-color hover:opacity-80 text-light-color dark:text-dark-color"
+      className={`${text.includes("æ") ? "border-dotted" : "border-dashed"} cursor-pointer flex items-center justify-between gap-2 transition duration-200 dark:active:bg-dark-accent-background active:bg-light-accent-background px-4 line-clamp-1 md:text-lg text-md dark:opacity-40 opacity-60 py-2 rounded-xl font-medium border-2 hover:border-light-accent-color dark:hover:border-dark-accent-color hover:text-light-accent-color dark:hover:text-dark-accent-color hover:opacity-80 text-light-color dark:text-dark-color`}
     >
-      {text}
+      {text.replace("æ", "")}
+      {text.includes("æ") ? <span className="px-1 flex rounded-full bg-dark-accent-background text-dark-accent-color text-xs">R</span>: null}
     </p>
   );
 }

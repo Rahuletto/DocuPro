@@ -1,11 +1,12 @@
 import History from "@/components/History";
-import Search from "@/components/SearchBar";
+import HomeSearch from "@/components/HomeSearch";
+
 import ThemeToggle from "@/components/ThemeToggle";
 import { IoLibrarySharp } from "react-icons/io5";
 
 export default function Home() {
   return (
-    <main className="transition-all duration-200 h-screen bg-light-background-normal dark:bg-dark-background-normal flex items-center justify-center flex-col gap-20">
+    <main className="transition-all duration-200 h-screen bg-light-background-normal dark:bg-dark-background-normal flex items-center justify-center flex-col gap-12">
       <ThemeToggle absolute />
       <div className="flex flex-col items-center justify-center gap-6">
         <div className="transition-all duration-200 flex flex-col gap-1 items-center justify-center">
@@ -25,7 +26,7 @@ export default function Home() {
             Past exam papers at your fingertips.
           </p>
         </div>
-        <Search />
+        <HomeSearch />
       </div>
       <History />
 

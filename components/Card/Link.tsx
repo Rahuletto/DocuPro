@@ -1,3 +1,5 @@
+
+import { Link as LinkType } from "@/types/PaperResults";
 import { Paper } from "@/types/SearchResult";
 import { Link } from "next-view-transitions";
 import React from "react";

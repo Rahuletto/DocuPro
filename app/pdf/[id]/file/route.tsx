@@ -30,26 +30,26 @@ export async function GET(
     });
   }
 
-  const getURL = await fetchTimeout(
-    `https://proscrape.vercel.app/api/dspace/getPDF?q=${params.id}`,
+  const pdf = await fetchTimeout(
+    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/dspace/getPDF?q=${params.id}`,
     {
       cache: "force-cache",
       method: "POST",
       body: JSON.stringify({
         url: `http://dspace.srmist.edu.in/dspace/handle/123456789/${params.id}`,
       }),
-    }, 5000
+    },
+    5000
   );
 
-  const pdf = await getURL.json();
   const pdfUrl = pdf.redirect;
 
   try {
-    const response = await fetchTimeout(pdfUrl, {
+    const response = await fetch(pdfUrl, {
       headers: {
         Accept: "application/pdf",
       },
-    }, 5000);
+    });
 
     if (!response.ok) {
       return NextResponse.json(

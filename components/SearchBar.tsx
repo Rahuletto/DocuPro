@@ -6,10 +6,12 @@ import { slideInOut } from "@/animations/slide";
 
 export default function SearchBar({
   accent,
+  papers,
   value,
-  initial
+  initial,
 }: {
   accent?: boolean;
+  papers?: boolean;
   value?: string;
   initial?: string;
 }) {
@@ -17,13 +19,13 @@ export default function SearchBar({
   const [search, setSearch] = useState(value ?? "");
 
   function onEnter(event: React.KeyboardEvent<HTMLInputElement>) {
-    if(initial === search) return;
+    if (initial === search) return;
     if (event.key === "Enter") onClick(event as any);
   }
 
   function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
-    if(!search || initial === search) return;
+    if (!search || initial === search) return;
     const history = localStorage.getItem("history")
       ? JSON.parse(localStorage.getItem("history")!)
       : [];
@@ -32,7 +34,7 @@ export default function SearchBar({
     history.push(search);
     localStorage.setItem("history", JSON.stringify(history));
 
-    router.push(`/search?q=${search}`, {
+    router.push(`/${papers ? "papers" : "search"}?q=${search}`, {
       onTransitionReady: slideInOut,
     });
   }

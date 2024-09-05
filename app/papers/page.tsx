@@ -1,26 +1,32 @@
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
-import { Subject } from "@/types/SearchResult";
 import { redirect } from "next/navigation";
 import React from "react";
 import GroupedSubjects from "./components/Groups";
 import { BiError } from "react-icons/bi";
 import { fetchTimeout } from "@/misc/fetch";
+import { AllPaper } from "@/types/PaperResults";
 
 export default async function Search({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const search = searchParams?.q;
+  const search = searchParams?.q || "";
 
-  if (!search) redirect("/");
+//   if (!search) redirect("/");
 
-  const data: Subject[] = await fetchTimeout(
-    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/dspace/search?query=${search}`,
+  const response: { papers: AllPaper[] } = await fetchTimeout(
+    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/getAll`,
     { cache: "force-cache" },
-    5000
-  )
+    20000
+  );
+
+
+  const data = response.papers.filter((paper: AllPaper) => {
+    return paper?.title?.toLowerCase()?.includes(`${search}`.toLowerCase());
+  });
+  
 
   if (!data)
     return (
@@ -37,7 +43,7 @@ export default async function Search({
 
             <pre className="lg:text-md mx-2 mt-4 max-h-[500px] w-[80vw] overflow-auto rounded-2xl border-2 border-dashed border-light-error-color p-3 text-xs text-light-error-color opacity-90 md:text-sm dark:border-dark-error-color dark:text-dark-error-color">
               <code>
-                Dspace is not available at the moment, try again some time.
+                Docuscrape server is not available at the moment, try again some time.
               </code>
             </pre>
           </div>
@@ -54,11 +60,12 @@ export default async function Search({
           className="dark-box max-w-[1400px] w-full flex flex-col gap-10 justify-start items-start h-full md:mt-14 mt-4"
         >
           <SearchBar
+            papers
             accent
             initial={search.toString()}
             value={search.toString()}
           />
-          <GroupedSubjects subjects={data} />
+      <GroupedSubjects subjects={data} />
         </div>
       </div>
     </main>

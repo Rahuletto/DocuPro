@@ -4,7 +4,6 @@ import Regulations from "./Regulations";
 import Code from "./Code";
 
 import Link from "./Link";
-
 export default function Card({ name, code, regulation, papers }: Subject) {
   return (
     <div className="px-5 py-4 rounded-3xl border-2 border-dashed max-w-[350px] dark:border-[#FFFFFF0e] border-[#0000000e]">

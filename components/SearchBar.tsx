@@ -30,9 +30,16 @@ export default function SearchBar({
       ? JSON.parse(localStorage.getItem("history")!)
       : [];
 
-    if (history.includes(search)) history.splice(history.indexOf(search), 1);
-    history.push((papers ? "æ" : "") + search);
-    localStorage.setItem("history", JSON.stringify(history));
+    const item = (papers ? "æ" : "") + search;
+
+    const updatedHistory = history.filter(
+      (historyItem: string) =>
+        historyItem.replace("æ", "-") !== item.replace("æ", "-")
+    );
+
+    updatedHistory.push(item);
+
+    localStorage.setItem("history", JSON.stringify(updatedHistory));
 
     router.push(`/${papers ? "papers" : "search"}?q=${search}`, {
       onTransitionReady: slideInOut,

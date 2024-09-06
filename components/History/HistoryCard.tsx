@@ -1,6 +1,6 @@
 import { slideInOut } from "@/animations/slide";
 import { useTransitionRouter } from "next-view-transitions";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function HistoryCard({ text }: { text: string }) {
   const router = useTransitionRouter();
@@ -11,12 +11,13 @@ export default function HistoryCard({ text }: { text: string }) {
       : [];
 
     const updatedHistory = history.filter(
-      (historyItem: string) => historyItem !== item
+      (historyItem: string) => historyItem.replace("æ", "-") !== item.replace("æ", "-")
     );
 
     updatedHistory.push(item);
     localStorage.setItem("history", JSON.stringify(updatedHistory));
   }
+
   return (
     <p
       onClick={() => {

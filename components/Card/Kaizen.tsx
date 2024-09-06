@@ -20,8 +20,8 @@ export default function KaizenCards({ kaizen }: { kaizen: Kaizen }) {
               <div className="flex flex-col gap-2 w-full pl-2 border-l border-dashed border-light-kaizen-color dark:border-dark-kaizen-color ml-3">
                 {kaizen.links
                   .filter((a) => a.title !== "Main")
-                  .map((link, index) => (
-                    <KaizenLink key={index} link={link} />
+                  .map((link, i) => (
+                    <KaizenLink key={i} link={link} />
                   ))}
               </div>
             </>

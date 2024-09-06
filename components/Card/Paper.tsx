@@ -28,9 +28,9 @@ export default function PaperCard({ subject }: { subject: AllPaper }) {
             </h1>
             <hr className="border-light-accent-color dark:border-dark-accent-color opacity-80 border-dashed my-3" />
             <div className="flex flex-col gap-1 mb-2">
-              {materials.map((paper, index) => (
+              {materials.map((paper, i) => (
                 <PaperLink
-                  key={index}
+                  key={i}
                   link={paper}
                   year={subject.year + " Year"}
                 />

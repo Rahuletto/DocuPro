@@ -4,7 +4,7 @@ import { Kaizen } from "../../types/PaperResults";
 import { KaizenLink } from "./KaizenLink";
 export default function KaizenCards({ kaizen }: { kaizen: Kaizen }) {
   return (
-    <div className="border border-opacity-10 dark:border-opacity-15 dark:border-light-kaizen-background border-dark-kaizen-background px-5 py-4 rounded-3xl max-w-[350px] bg-light-kaizen-background dark:bg-dark-kaizen-background">
+    <div className="border border-opacity-10 dark:border-opacity-15 dark:border-light-kaizen-background border-dark-kaizen-background px-5 py-4 rounded-3xl bg-light-kaizen-background dark:bg-dark-kaizen-background">
       <h1 className="font-dm capitalize text-lg text-light-kaizen-color dark:text-dark-kaizen-color">
         {kaizen.title.toLowerCase()}
       </h1>

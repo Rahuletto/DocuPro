@@ -33,7 +33,7 @@ export function GroupKaizen({ kaizen }: { kaizen: Kaizen[] }) {
         From KaizenKlass
       </h2>
     <div className="w-full mb-8">
-      <div className="grid grid-cols-marks gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-2 mt-4">
         {kaizen.map((k, index) => (
           <KaizenCards kaizen={k} key={index} />
         ))}

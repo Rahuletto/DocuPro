@@ -25,7 +25,7 @@ export default async function Search({
   const kaizen: Kaizen[] = await fetchTimeout(
     `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/kaizen`,
     { cache: "force-cache" },
-    5000
+    10000
   );
 
   const data = response.papers.filter((paper: AllPaper) => {

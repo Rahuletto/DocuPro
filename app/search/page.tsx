@@ -6,6 +6,7 @@ import React from "react";
 import GroupedSubjects from "./components/Groups";
 import { BiError } from "react-icons/bi";
 import { fetchTimeout } from "@/misc/fetch";
+import Back from "@/components/Back";
 
 export default async function Search({
   searchParams,
@@ -20,7 +21,7 @@ export default async function Search({
     `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/dspace/search?query=${search}`,
     { cache: "force-cache" },
     5000
-  )
+  );
 
   if (!data)
     return (
@@ -53,11 +54,18 @@ export default async function Search({
           id="dark"
           className="dark-box max-w-[1400px] w-full flex flex-col gap-10 justify-start items-start h-full md:mt-14 mt-4"
         >
-          <SearchBar
-            accent
-            initial={search.toString()}
-            value={search.toString()}
-          />
+          <div className="flex flex-col gap-3 mb-6">
+          <Back />
+            <h1 className="lg:text-4xl text-3xl transition-all duration-200 font-semibold text-light-color dark:text-dark-color">
+              Question Papers
+            </h1>
+
+            <SearchBar
+              accent
+              initial={search.toString()}
+              value={search.toString()}
+            />
+          </div>
           <GroupedSubjects subjects={data} />
         </div>
       </div>

@@ -2,10 +2,10 @@ import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import { redirect } from "next/navigation";
 import React from "react";
-import GroupedSubjects from "./components/Groups";
+import GroupedSubjects, { GroupKaizen } from "./components/Groups";
 import { BiError } from "react-icons/bi";
 import { fetchTimeout } from "@/misc/fetch";
-import { AllPaper } from "@/types/PaperResults";
+import { AllPaper, Kaizen } from "@/types/PaperResults";
 
 export default async function Search({
   searchParams,
@@ -14,7 +14,7 @@ export default async function Search({
 }) {
   const search = searchParams?.q || "";
 
-//   if (!search) redirect("/");
+  //   if (!search) redirect("/");
 
   const response: { papers: AllPaper[] } = await fetchTimeout(
     `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/getAll`,
@@ -22,11 +22,19 @@ export default async function Search({
     20000
   );
 
+  const kaizen: Kaizen[] = await fetchTimeout(
+    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/kaizen`,
+    { cache: "force-cache" },
+    5000
+  );
 
   const data = response.papers.filter((paper: AllPaper) => {
     return paper?.title?.toLowerCase()?.includes(`${search}`.toLowerCase());
   });
-  
+
+  const kaizendata = kaizen.filter((paper) => {
+    return paper?.title?.toLowerCase()?.includes(`${search}`.toLowerCase());
+  });
 
   if (!data)
     return (
@@ -43,7 +51,8 @@ export default async function Search({
 
             <pre className="lg:text-md mx-2 mt-4 max-h-[500px] w-[80vw] overflow-auto rounded-2xl border-2 border-dashed border-light-error-color p-3 text-xs text-light-error-color opacity-90 md:text-sm dark:border-dark-error-color dark:text-dark-error-color">
               <code>
-                Docuscrape server is not available at the moment, try again some time.
+                Docuscrape server is not available at the moment, try again some
+                time.
               </code>
             </pre>
           </div>
@@ -65,7 +74,8 @@ export default async function Search({
             initial={search.toString()}
             value={search.toString()}
           />
-      <GroupedSubjects subjects={data} />
+          <GroupedSubjects subjects={data} />
+          {kaizendata?.[0] && <GroupKaizen kaizen={kaizendata} />}
         </div>
       </div>
     </main>

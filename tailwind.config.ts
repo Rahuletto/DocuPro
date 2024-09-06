@@ -22,6 +22,9 @@ const config: Config = {
       black: "900",
     },
     extend: {
+      fontFamily: {
+        dm: ["var(--font-dm)"],
+      },
       gridTemplateColumns: {
         marks: "repeat(auto-fill, minmax(18rem, 1fr))",
       },

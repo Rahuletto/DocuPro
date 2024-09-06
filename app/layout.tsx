@@ -5,6 +5,13 @@ import { ThemeProvider } from "@/provider/ThemeProvider";
 import { ViewTransitions } from "next-view-transitions";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { DM_Serif_Display } from "next/font/google"
+
+const font = DM_Serif_Display({
+  weight: "400",
+  display: "swap",
+  variable: '--font-dm',
+})
 
 
 const APP_NAME = "DocuPro";
@@ -88,7 +95,7 @@ export default function RootLayout({
     <ViewTransitions>
     <html
       lang="en"
-      className={`dark h-screen bg-light-background-normal dark:bg-dark-background-normal ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`dark ${font.variable} h-screen bg-light-background-normal dark:bg-dark-background-normal ${GeistSans.variable} ${GeistMono.variable}`}
     >
       <ThemeProvider>
         <meta

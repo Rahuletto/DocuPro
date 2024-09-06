@@ -13,3 +13,8 @@ export interface Link {
     units: Record<string, Link[]>;
     tutorials: Record<string, Link[]>;
   }
+
+  export interface Kaizen {
+    title: string;
+    links: Link[];
+  }

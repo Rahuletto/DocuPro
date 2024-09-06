@@ -2,6 +2,7 @@ export const Themes = {
     theory: "#F2D869",
     practical: "#69E069",
     dark: {
+
       background: {
         normal: "#11151B",
         light: "#1E232B",
@@ -29,6 +30,10 @@ export const Themes = {
         background: "#1B1D2B",
         color: "#7CB3EB",
       },
+      kaizen: {
+        background: "#100D0C",
+        color: "#E0DAB2",
+      }
     },
     light: {
       background: {
@@ -58,6 +63,10 @@ export const Themes = {
         background: "#E3F2FD",
         color: "#1976D2",
       },
+      kaizen: {
+        background: "#CECCC3",
+        color: "#39382D",
+      }
     },
   };
   

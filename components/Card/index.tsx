@@ -6,7 +6,7 @@ import Code from "./Code";
 import Link from "./Link";
 export default function Card({ name, code, regulation, papers }: Subject) {
   return (
-    <div className="px-5 py-4 rounded-3xl border-2 border-dashed max-w-[350px] dark:border-[#FFFFFF0e] border-[#0000000e]">
+    <div className="px-5 bg-light-background-normal bg-opacity-30 dark:bg-dark-background-dark py-4 rounded-3xl border-2 border-dashed max-w-[350px] dark:border-[#FFFFFF0e] border-[#0000000e]">
       <h1 className="font-medium text-lg text-light-color dark:text-dark-color">
         {name.replace(code, "")}
       </h1>

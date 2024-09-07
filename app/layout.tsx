@@ -5,21 +5,19 @@ import { ThemeProvider } from "@/provider/ThemeProvider";
 import { ViewTransitions } from "next-view-transitions";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { DM_Serif_Display } from "next/font/google"
+import { DM_Serif_Display } from "next/font/google";
 
 const font = DM_Serif_Display({
   weight: "400",
   display: "swap",
-  variable: '--font-dm',
-  subsets: ["latin"]
-})
-
+  variable: "--font-dm",
+  subsets: ["latin"],
+});
 
 const APP_NAME = "DocuPro";
 const APP_DEFAULT_TITLE = "DocuPro";
 const APP_TITLE_TEMPLATE = "DocuPro";
-const APP_DESCRIPTION =
-  "📚 Past exam papers at your fingertips.";
+const APP_DESCRIPTION = "📚 Past exam papers at your fingertips.";
 const PRODUCTION_URL = "https://docu-pro.vercel.app";
 
 export const metadata: Metadata = {
@@ -69,22 +67,27 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: ["/docupro.png"],
   },
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: "/icons/android-icon-192x192.png",
-  //       sizes: "192x192",
-  //       type: "image/png",
-  //     },
-  //   ],
-  //   apple: [
-  //     {
-  //       url: "/icons/maskable_icon_x192.png",
-  //       sizes: "192x192",
-  //       type: "image/png",
-  //     },
-  //   ],
-  // },
+  icons: {
+    icon: [
+      {
+        url: "/docupro.svg",
+        sizes: "192x192",
+        type: "image/svg",
+      },
+      {
+        url: "/icon.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+    // apple: [
+    //   {
+    //     url: "/icons/maskable_icon_x192.png",
+    //     sizes: "192x192",
+    //     type: "image/png",
+    //   },
+    // ],
+  },
 };
 
 export default function RootLayout({
@@ -94,27 +97,27 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-    <html
-      lang="en"
-      className={`dark ${font.variable} h-screen bg-light-background-normal dark:bg-dark-background-normal ${GeistSans.variable} ${GeistMono.variable}`}
-    >
-      <ThemeProvider>
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content={Themes.dark.background.normal}
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content={Themes.light.background.normal}
-        />
+      <html
+        lang="en"
+        className={`dark ${font.variable} h-screen bg-light-background-normal dark:bg-dark-background-normal ${GeistSans.variable} ${GeistMono.variable}`}
+      >
+        <ThemeProvider>
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content={Themes.dark.background.normal}
+          />
+          <meta
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            content={Themes.light.background.normal}
+          />
 
-        <meta name="theme-color" content={Themes.dark.background.normal} />
+          <meta name="theme-color" content={Themes.dark.background.normal} />
 
-        <body>{children}</body>
-      </ThemeProvider>
-    </html>
+          <body>{children}</body>
+        </ThemeProvider>
+      </html>
     </ViewTransitions>
   );
 }

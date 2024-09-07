@@ -80,13 +80,6 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    // apple: [
-    //   {
-    //     url: "/icons/maskable_icon_x192.png",
-    //     sizes: "192x192",
-    //     type: "image/png",
-    //   },
-    // ],
   },
 };
 

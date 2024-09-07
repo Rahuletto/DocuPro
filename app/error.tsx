@@ -23,11 +23,8 @@ export default function Error({
           <h1 className="text-2xl font-medium text-light-error-color dark:text-dark-error-color">
             Error.
           </h1>
-          <p className="text-md max-w-[500px] text-center italic text-light-error-color opacity-90 dark:text-dark-error-color">
-            *intense crash sound*
-          </p>
 
-            <pre className="lg:text-md mx-2 mt-4 max-h-[500px] w-[80vw] overflow-auto rounded-2xl border-2 border-dashed border-light-error-color p-3 text-xs text-light-error-color opacity-90 md:text-sm dark:border-dark-error-color dark:text-dark-error-color">
+            <pre className="lg:text-md mx-2 mt-4 max-h-[500px] overflow-auto rounded-2x p-3 text-xs text-light-error-color opacity-90 md:text-sm dark:text-dark-error-color">
               <code>Dspace is not available at the moment, try again some time.</code>
             </pre>
 

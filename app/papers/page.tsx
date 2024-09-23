@@ -18,13 +18,11 @@ export default async function Search({
 
   const response: { papers: AllPaper[] } = await fetchTimeout(
     `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/getAll`,
-    { cache: "force-cache" },
     20000
   );
 
   const kaizen: Kaizen[] = await fetchTimeout(
     `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/ct/kaizen`,
-    { cache: "force-cache" },
     10000
   );
 

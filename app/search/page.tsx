@@ -18,8 +18,7 @@ export default async function Search({
   if (!search) redirect("/");
 
   const data: Subject[] = await fetchTimeout(
-    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/dspace/search?query=${search}`,
-    { cache: "force-cache" },
+    `https://neat-issi-proscrape-ae9ba923.koyeb.app/api/dspace/search?query=${search}`
     5000
   );
 

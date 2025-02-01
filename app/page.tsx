@@ -1,8 +1,4 @@
-import History from "@/components/History";
-import HomeSearch from "@/components/HomeSearch";
-
 import ThemeToggle from "@/components/ThemeToggle";
-import { IoLibrarySharp } from "react-icons/io5";
 
 export default function Home() {
   return (
